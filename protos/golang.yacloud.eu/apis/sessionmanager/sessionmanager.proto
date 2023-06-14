@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package sessionmanager;
+option java_package = "eu.yacloud.apis.sessionmanager";
+import "golang.conradwood.net/apis/common/common.proto";
+import "golang.yacloud.eu/apis/session/session.proto";
+import "golang.conradwood.net/apis/auth/auth.proto";
+
+
+// comment: message pingresponse
+message PingResponse {
+  // comment: field pingresponse.response
+  string Response = 1;
+}
+
+message SessionLog {
+  uint64 ID=1;
+  string UserID=2;
+  string Username=3;
+  string Useremail=4;
+  string IP=5;
+  string UserAgent=6;
+  uint32 Created=7;
+  string BrowserID=8;
+  string SessionToken=9 [(common.sql_unique)="true"];
+  uint32 LastUsed=10;
+  string TriggerHost=11;
+
+}
+
+message NewSessionRequest {
+  string IPAddress=1;
+  string UserAgent=2;
+  string BrowserID=3;
+  string UserID=4;
+  string Username=5;
+  string Useremail=6;
+  string TriggerHost=7;
+  
+}
+
+message SessionResponse {
+  string Token=1; // session token identification
+  uint32 LastSessionTimestamp=2; // when was the last session for same user?
+  bool NewDevice=3; // true if user logged in with a new device
+  session.Session Session=4; // the session
+}
+
+message SessionVerifyResponse {
+  bool IsValid=1; // if false, the session could not be verified
+  SessionLog SessionLog=2; // the sessionlog
+}
+message SessionToken {
+  string Token=1;
+}
+message SessionAliveResponse {
+  bool IsValid=1;
+  session.Session Session=2;
+}
+message User2SessionRequest {
+  session.Session Session=1;
+  auth.User User=2;
+}
+
+// SessionManager creates sessions for users - each "login" is a new session.
+service SessionManager {
+  // comment: rpc ping
+  rpc Ping(common.Void) returns (PingResponse);
+  // create a new session
+  rpc NewSession(NewSessionRequest)returns(SessionResponse);
+  // verify a session (by token)
+  rpc VerifySession(SessionToken) returns (SessionVerifyResponse);
+  // keep a session alive
+  rpc KeepAliveSession(SessionToken) returns (SessionAliveResponse);
+  // update a session (e.g. to set a user)
+  rpc User2Session(User2SessionRequest)returns(SessionAliveResponse);
+}
+
+

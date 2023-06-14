@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// CNW_OPTION: create_create=false
+
+package session;
+option java_package = "eu.yacloud.apis.session";
+
+message Organisation {
+  string ID=1;
+  string FriendlyName=2;
+}
+
+message Session {
+  string SessionID=1; // unique  id for this session
+  Organisation Organisation=2;
+  string UserID=3; // a user might be associated with this session
+}
