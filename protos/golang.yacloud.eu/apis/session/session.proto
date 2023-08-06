@@ -3,6 +3,7 @@ syntax = "proto3";
 // CNW_OPTION: create_create=false
 
 package session;
+option go_package = "golang.yacloud.eu/apis/session";
 option java_package = "eu.yacloud.apis.session";
 
 message Organisation {
