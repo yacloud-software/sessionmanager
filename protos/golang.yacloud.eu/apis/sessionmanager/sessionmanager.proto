@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package sessionmanager;
+option go_package = "golang.yacloud.eu/apis/sessionmanager";
 option java_package = "eu.yacloud.apis.sessionmanager";
 import "golang.conradwood.net/apis/common/common.proto";
 import "golang.yacloud.eu/apis/session/session.proto";
@@ -75,5 +76,3 @@ service SessionManager {
   // update a session (e.g. to set a user)
   rpc User2Session(User2SessionRequest)returns(SessionAliveResponse);
 }
-
-
