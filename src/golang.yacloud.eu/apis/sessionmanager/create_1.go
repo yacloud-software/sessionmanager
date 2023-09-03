@@ -1,6 +1,6 @@
 // client create: SessionManagerClient
 /*
-  Created by /srv/home/cnw/devel/go/go-tools/src/golang.conradwood.net/gotools/protoc-gen-cnw/protoc-gen-cnw.go
+  Created by /home/cnw/devel/go/yatools/src/golang.yacloud.eu/yatools/protoc-gen-cnw/protoc-gen-cnw.go
 */
 
 /* geninfo:
@@ -13,7 +13,7 @@
    varname   : client_SessionManagerClient_0
    clientname: SessionManagerClient
    servername: SessionManagerServer
-   gscvname  : sessionmanager.SessionManager
+   gsvcname  : sessionmanager.SessionManager
    lockname  : lock_SessionManagerClient_0
    activename: active_SessionManagerClient_0
 */
@@ -46,3 +46,7 @@ func GetSessionManagerClient() SessionManagerClient {
 }
 
 func SessionManagerLookupID() string { return "sessionmanager.SessionManager" } // returns the ID suitable for lookup in the registry. treat as opaque, subject to change.
+
+func init() {
+   client.RegisterDependency("sessionmanager.SessionManager")
+}
