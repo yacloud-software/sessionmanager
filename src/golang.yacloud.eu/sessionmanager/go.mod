@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	golang.conradwood.net/apis/common v1.1.2503
-	golang.conradwood.net/go-easyops v0.1.19748
+	golang.conradwood.net/go-easyops v0.1.20370
 	golang.yacloud.eu/apis/session v1.1.2503
 	golang.yacloud.eu/apis/sessionmanager v1.1.2183
 	google.golang.org/grpc v1.57.0
@@ -31,7 +31,6 @@ require (
 	golang.conradwood.net/apis/goeasyops v1.1.2503 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.2503 // indirect
 	golang.conradwood.net/apis/registry v1.1.2503 // indirect
-	golang.conradwood.net/apis/rpcinterceptor v1.1.2495 // indirect
 	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/sys v0.11.0 // indirect
 	golang.org/x/text v0.12.0 // indirect
