@@ -49,4 +49,5 @@ func SessionManagerLookupID() string { return "sessionmanager.SessionManager" } 
 
 func init() {
    client.RegisterDependency("sessionmanager.SessionManager")
+   AddService("sessionmanager.SessionManager")
 }
