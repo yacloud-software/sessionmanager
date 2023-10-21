@@ -4,8 +4,8 @@ go 1.18
 
 require (
 	golang.conradwood.net/apis/common v1.1.2643
-	golang.conradwood.net/go-easyops v0.1.20970
-	golang.yacloud.eu/apis/session v1.1.2503
+	golang.conradwood.net/go-easyops v0.1.21154
+	golang.yacloud.eu/apis/session v1.1.2643
 	golang.yacloud.eu/apis/sessionmanager v1.1.2183
 	google.golang.org/grpc v1.58.3
 )
