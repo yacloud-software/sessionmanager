@@ -48,9 +48,10 @@ message SessionResponse {
 }
 
 message SessionVerifyResponse {
-  bool IsValid=1; // if false, the session could not be verified
+  bool IsValid=1; // if true, the session is active and logged in with a user
   SessionLog SessionLog=2; // the sessionlog
   auth.SignedUser User=3; // the user for this session
+  bool IsSessionToken=4; // if the token has been identified to belong to a session, this is true. The session may still be expired/loggedout or otherwise not belong to a valid user
 }
 message SessionToken {
   string Token=1;
