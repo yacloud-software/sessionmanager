@@ -50,6 +50,7 @@ message SessionResponse {
 message SessionVerifyResponse {
   bool IsValid=1; // if false, the session could not be verified
   SessionLog SessionLog=2; // the sessionlog
+  auth.SignedUser User=3; // the user for this session
 }
 message SessionToken {
   string Token=1;
@@ -69,7 +70,7 @@ service SessionManager {
   rpc Ping(common.Void) returns (PingResponse);
   // create a new session
   rpc NewSession(NewSessionRequest)returns(SessionResponse);
-  // verify a session (by token)
+  // verify a session (by token). this turns a session token into a user object
   rpc VerifySession(SessionToken) returns (SessionVerifyResponse);
   // keep a session alive
   rpc KeepAliveSession(SessionToken) returns (SessionAliveResponse);
