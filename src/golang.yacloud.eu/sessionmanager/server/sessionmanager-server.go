@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"golang.conradwood.net/apis/common"
+	"golang.conradwood.net/go-easyops/authremote"
 	"golang.conradwood.net/go-easyops/errors"
 	"golang.conradwood.net/go-easyops/server"
 	"golang.conradwood.net/go-easyops/utils"
@@ -150,6 +151,11 @@ func (e *echoServer) VerifySession(ctx context.Context, req *pb.SessionToken) (*
 	if err != nil {
 		fmt.Printf("failed to update sessionlog: %s\n", err)
 	}
+	user, err := authremote.GetSignedUserByID(ctx, res.SessionLog.UserID)
+	if err != nil {
+		return nil, err
+	}
+	res.User = user
 	return res, nil
 }
 func (e *echoServer) KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.SessionAliveResponse, error) {
