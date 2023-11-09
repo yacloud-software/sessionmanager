@@ -137,6 +137,7 @@ func (e *echoServer) VerifySession(ctx context.Context, req *pb.SessionToken) (*
 		return res, nil
 	}
 	sl := sls[0]
+	res.IsSessionToken = true
 
 	t := time.Unix(int64(sl.LastUsed), 0)
 	if time.Since(t) > time.Duration(120)*time.Minute {
