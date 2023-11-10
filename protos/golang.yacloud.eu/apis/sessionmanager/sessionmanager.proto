@@ -77,4 +77,6 @@ service SessionManager {
   rpc KeepAliveSession(SessionToken) returns (SessionAliveResponse);
   // update a session (e.g. to set a user)
   rpc User2Session(User2SessionRequest)returns(SessionAliveResponse);
+  // remove a user from a session (e.g. logout)
+  rpc DisassociateUserFromSession(SessionToken) returns (SessionAliveResponse);
 }
