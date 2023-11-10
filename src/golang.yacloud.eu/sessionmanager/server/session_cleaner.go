@@ -3,12 +3,15 @@ package main
 import (
 	"fmt"
 	"golang.conradwood.net/go-easyops/authremote"
+	"golang.conradwood.net/go-easyops/utils"
+	pb "golang.yacloud.eu/apis/sessionmanager"
 	"golang.yacloud.eu/sessionmanager/db"
 	"time"
 )
 
 const (
-	OLDEST_LASTUSED_NOUSER = time.Duration(30) * time.Minute
+	OLDEST_LASTUSED_NOUSER   = time.Duration(30) * time.Minute
+	OLDEST_LASTUSED_WITHUSER = time.Duration(48) * time.Hour
 )
 
 func session_cleaner() {
@@ -24,22 +27,48 @@ func session_cleaner() {
 }
 func clean() error {
 	now := time.Now()
-	cutoff := now.Add(0 - OLDEST_LASTUSED_NOUSER).Unix()
+
+	// delete those with no user
+	t_cutoff := now.Add(0 - OLDEST_LASTUSED_NOUSER)
+	cutoff := t_cutoff.Unix()
 	ctx := authremote.Context()
 	entries, err := db.DefaultDBSessionLog().FromQuery(ctx, "userid = '' and lastused < $1", cutoff)
 	if err != nil {
 		return err
 	}
-	fmt.Printf("Deleting %d entries with no userid and lastused < %d\n", len(entries), cutoff)
+	fmt.Printf("[cleaner] Deleting %d entries with no userid and lastused < %s\n", len(entries), utils.TimeString(t_cutoff))
+	err = remove(entries)
+	if err != nil {
+		return err
+	}
+
+	// delete those with user
+	t_cutoff = now.Add(0 - OLDEST_LASTUSED_WITHUSER)
+	cutoff = t_cutoff.Unix()
+	ctx = authremote.Context()
+	entries, err = db.DefaultDBSessionLog().FromQuery(ctx, "lastused < $1", cutoff)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("[cleaner] Deleting %d entries with userid and lastused < %s\n", len(entries), utils.TimeString(t_cutoff))
+	err = remove(entries)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+func remove(entries []*pb.SessionLog) error {
+	ctx := authremote.Context()
 	ct := 0
 	// not re-creating context here to avoid starvation.
 	for _, e := range entries {
-		err = db.DefaultDBSessionLog().DeleteByID(ctx, e.ID)
+		err := db.DefaultDBSessionLog().DeleteByID(ctx, e.ID)
 		if err != nil {
-			fmt.Printf("After deleting %d entries, error: %s\n", ct, err)
+			fmt.Printf("[cleaner] After deleting %d entries, error: %s\n", ct, err)
 			return err
 		}
 		ct++
 	}
+	fmt.Printf("[cleaner] cleaned %d entries\n", ct)
 	return nil
 }
