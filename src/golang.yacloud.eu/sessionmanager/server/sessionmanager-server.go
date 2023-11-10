@@ -179,6 +179,34 @@ func (e *echoServer) KeepAliveSession(ctx context.Context, req *pb.SessionToken)
 	return res, nil
 }
 
+func (e *echoServer) DisassociateUserFromSession(ctx context.Context, req *pb.SessionToken) (*pb.SessionAliveResponse, error) {
+	res := &pb.SessionAliveResponse{
+		IsValid: false,
+	}
+	sid := req.Token
+	sl, err := get_sessionlog_by_sessionid(ctx, sid)
+	if err != nil {
+		return nil, err
+	}
+	if sl == nil {
+		return res, nil
+	}
+	sl.UserID = ""
+	sl.LastUsed = uint32(time.Now().Unix())
+	err = db.DefaultDBSessionLog().Update(ctx, sl)
+	if err != nil {
+		return nil, err
+	}
+
+	s, err := create_session_from_log(ctx, sl)
+	if err != nil {
+		return nil, err
+	}
+	res.IsValid = true
+	res.Session = s
+	return res, nil
+}
+
 // update a session, e.g. with a new user
 func (e *echoServer) User2Session(ctx context.Context, req *pb.User2SessionRequest) (*pb.SessionAliveResponse, error) {
 	res := &pb.SessionAliveResponse{
