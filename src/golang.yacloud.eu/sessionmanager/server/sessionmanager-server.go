@@ -191,6 +191,7 @@ func (e *echoServer) DisassociateUserFromSession(ctx context.Context, req *pb.Se
 	if sl == nil {
 		return res, nil
 	}
+	wasuser := sl.UserID
 	sl.UserID = ""
 	sl.LastUsed = uint32(time.Now().Unix())
 	err = db.DefaultDBSessionLog().Update(ctx, sl)
@@ -204,7 +205,7 @@ func (e *echoServer) DisassociateUserFromSession(ctx context.Context, req *pb.Se
 	}
 	res.IsValid = true
 	res.Session = s
-	fmt.Printf("Disassociated user %s from session %s\n", s.UserID, sid)
+	fmt.Printf("Disassociated user \"%s\" from session %s\n", wasuser, sid)
 	return res, nil
 }
 
