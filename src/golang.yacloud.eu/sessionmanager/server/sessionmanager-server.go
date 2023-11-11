@@ -121,7 +121,7 @@ func (e *echoServer) NewSession(ctx context.Context, req *pb.NewSessionRequest) 
 		return nil, err
 	}
 	res.Session = s
-
+	fmt.Printf("Created session for user %s: %s\n", s.UserID, res.Token)
 	return res, nil
 }
 
@@ -204,6 +204,7 @@ func (e *echoServer) DisassociateUserFromSession(ctx context.Context, req *pb.Se
 	}
 	res.IsValid = true
 	res.Session = s
+	fmt.Printf("Disassociated user %s from session %s\n", s.UserID, sid)
 	return res, nil
 }
 
@@ -234,6 +235,7 @@ func (e *echoServer) User2Session(ctx context.Context, req *pb.User2SessionReque
 	}
 
 	res.IsValid = true
+	fmt.Printf("Associated user %s with session %s\n", sl.UserID, req.Session.SessionID)
 	return res, nil
 }
 
