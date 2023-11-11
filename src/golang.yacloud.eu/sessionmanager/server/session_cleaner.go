@@ -36,7 +36,9 @@ func clean() error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("[cleaner] Deleting %d entries with no userid and lastused < %s\n", len(entries), utils.TimeString(t_cutoff))
+	if len(entries) > 0 {
+		fmt.Printf("[cleaner] Deleting %d entries with no userid and lastused < %s\n", len(entries), utils.TimeString(t_cutoff))
+	}
 	err = remove(entries)
 	if err != nil {
 		return err
@@ -50,7 +52,9 @@ func clean() error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("[cleaner] Deleting %d entries with userid and lastused < %s\n", len(entries), utils.TimeString(t_cutoff))
+	if len(entries) > 0 {
+		fmt.Printf("[cleaner] Deleting %d entries with userid and lastused < %s\n", len(entries), utils.TimeString(t_cutoff))
+	}
 	err = remove(entries)
 	if err != nil {
 		return err
@@ -58,6 +62,9 @@ func clean() error {
 	return nil
 }
 func remove(entries []*pb.SessionLog) error {
+	if len(entries) == 0 {
+		return nil
+	}
 	ctx := authremote.Context()
 	ct := 0
 	// not re-creating context here to avoid starvation.
