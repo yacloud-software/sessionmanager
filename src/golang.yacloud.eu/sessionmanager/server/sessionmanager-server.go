@@ -39,13 +39,13 @@ func main() {
 	go session_cleaner()
 	sd := server.NewServerDef()
 	sd.SetPort(*port)
-	sd.Register = server.Register(
+	sd.SetRegister(server.Register(
 		func(server *grpc.Server) error {
 			e := new(echoServer)
 			pb.RegisterSessionManagerServer(server, e)
 			return nil
 		},
-	)
+	))
 	err = server.ServerStartup(sd)
 	utils.Bail("Unable to start server", err)
 	os.Exit(0)
@@ -258,3 +258,4 @@ func create_session_from_log(ctx context.Context, req *pb.SessionLog) (*session.
 	}
 	return res, nil
 }
+

@@ -51,3 +51,4 @@ func init() {
    client.RegisterDependency("sessionmanager.SessionManager")
    AddService("sessionmanager.SessionManager")
 }
+

@@ -79,3 +79,4 @@ func remove(entries []*pb.SessionLog) error {
 	fmt.Printf("[cleaner] cleaned %d entries\n", ct)
 	return nil
 }
+
