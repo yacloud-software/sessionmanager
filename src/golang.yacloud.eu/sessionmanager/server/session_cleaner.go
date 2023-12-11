@@ -80,3 +80,4 @@ func remove(entries []*pb.SessionLog) error {
 	return nil
 }
 
+
