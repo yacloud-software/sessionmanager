@@ -3,9 +3,9 @@ module golang.yacloud.eu/sessionmanager
 go 1.18
 
 require (
-	golang.conradwood.net/apis/common v1.1.2869
-	golang.conradwood.net/go-easyops v0.1.25710
-	golang.yacloud.eu/apis/session v1.1.2869
+	golang.conradwood.net/apis/common v1.1.2877
+	golang.conradwood.net/go-easyops v0.1.25963
+	golang.yacloud.eu/apis/session v1.1.2877
 	golang.yacloud.eu/apis/sessionmanager v1.1.2183
 	google.golang.org/grpc v1.62.1
 )
@@ -24,13 +24,13 @@ require (
 	github.com/prometheus/client_model v0.5.0 // indirect
 	github.com/prometheus/common v0.44.0 // indirect
 	github.com/prometheus/procfs v0.12.0 // indirect
-	golang.conradwood.net/apis/auth v1.1.2869 // indirect
+	golang.conradwood.net/apis/auth v1.1.2877 // indirect
 	golang.conradwood.net/apis/autodeployer v1.1.2643 // indirect
 	golang.conradwood.net/apis/deploymonkey v1.1.2643 // indirect
 	golang.conradwood.net/apis/echoservice v1.1.2643 // indirect
 	golang.conradwood.net/apis/errorlogger v1.1.2643 // indirect
 	golang.conradwood.net/apis/framework v1.1.2643 // indirect
-	golang.conradwood.net/apis/goeasyops v1.1.2869 // indirect
+	golang.conradwood.net/apis/goeasyops v1.1.2877 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.2643 // indirect
 	golang.conradwood.net/apis/registry v1.1.2643 // indirect
 	golang.org/x/net v0.22.0 // indirect
