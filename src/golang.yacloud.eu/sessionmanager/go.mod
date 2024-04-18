@@ -4,7 +4,7 @@ go 1.21.1
 
 require (
 	golang.conradwood.net/apis/common v1.1.2902
-	golang.conradwood.net/go-easyops v0.1.27320
+	golang.conradwood.net/go-easyops v0.1.27487
 	golang.yacloud.eu/apis/session v1.1.2902
 	golang.yacloud.eu/apis/sessionmanager v1.1.2183
 	google.golang.org/grpc v1.63.2
