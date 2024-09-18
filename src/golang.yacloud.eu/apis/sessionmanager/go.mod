@@ -4,11 +4,11 @@ go 1.21.1
 
 require (
 	github.com/golang/protobuf v1.5.4
-	golang.conradwood.net/apis/auth v1.1.3071
-	golang.conradwood.net/apis/common v1.1.3071
-	golang.conradwood.net/go-easyops v0.1.29674
+	golang.conradwood.net/apis/auth v1.1.3128
+	golang.conradwood.net/apis/common v1.1.3128
+	golang.conradwood.net/go-easyops v0.1.29912
 	golang.org/x/net v0.29.0
-	golang.yacloud.eu/apis/session v1.1.3071
+	golang.yacloud.eu/apis/session v1.1.3128
 	google.golang.org/grpc v1.66.0
 )
 
@@ -24,7 +24,7 @@ require (
 	golang.conradwood.net/apis/autodeployer v1.1.3071 // indirect
 	golang.conradwood.net/apis/deploymonkey v1.1.3071 // indirect
 	golang.conradwood.net/apis/framework v1.1.3057 // indirect
-	golang.conradwood.net/apis/goeasyops v1.1.3071 // indirect
+	golang.conradwood.net/apis/goeasyops v1.1.3128 // indirect
 	golang.conradwood.net/apis/grafanadata v1.1.3071 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.3057 // indirect
 	golang.conradwood.net/apis/registry v1.1.3071 // indirect
