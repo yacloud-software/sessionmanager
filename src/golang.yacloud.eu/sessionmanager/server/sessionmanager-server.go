@@ -34,11 +34,13 @@ type echoServer struct {
 func main() {
 	var err error
 	flag.Parse()
+   server.SetHealth(common.Health_STARTING)
 	fmt.Printf("Starting SessionManagerServer...\n")
 	db.DefaultDBSessionLog()
 	go session_cleaner()
 	sd := server.NewServerDef()
 	sd.SetPort(*port)
+sd.SetOnStartupCallback(startup)
 	sd.SetRegister(server.Register(
 		func(server *grpc.Server) error {
 			e := new(echoServer)
@@ -49,6 +51,9 @@ func main() {
 	err = server.ServerStartup(sd)
 	utils.Bail("Unable to start server", err)
 	os.Exit(0)
+}
+func startup() {
+	server.SetHealth(common.Health_READY)
 }
 
 /************************************
@@ -258,6 +263,9 @@ func create_session_from_log(ctx context.Context, req *pb.SessionLog) (*session.
 	}
 	return res, nil
 }
+
+
+
 
 
 
