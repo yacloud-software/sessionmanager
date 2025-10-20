@@ -1,12 +1,7 @@
 module golang.yacloud.eu/apis/session
 
-go 1.23.0
-
-toolchain go1.23.3
+go 1.24.0
 
 require github.com/golang/protobuf v1.5.4
 
-require (
-	github.com/google/go-cmp v0.7.0 // indirect
-	google.golang.org/protobuf v1.36.8 // indirect
-)
+require google.golang.org/protobuf v1.36.10 // indirect
