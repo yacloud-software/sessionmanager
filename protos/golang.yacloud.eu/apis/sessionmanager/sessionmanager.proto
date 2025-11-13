@@ -85,4 +85,6 @@ service SessionManager {
   rpc DisassociateUserFromSession(SessionToken) returns (SessionAliveResponse);
   // whoami
   rpc WhoAmI(common.Void)returns(WhoAmIResponse);
+  // whoami, if no user, then send http 401 (triggering the client to authenticate)
+  rpc WhoAmIWithTriggerAuth(common.Void)returns(WhoAmIResponse);
 }
