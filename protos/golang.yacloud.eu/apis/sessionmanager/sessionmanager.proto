@@ -64,6 +64,10 @@ message User2SessionRequest {
   session.Session Session=1;
   auth.User User=2;
 }
+message WhoAmIResponse {
+  auth.User User=1;
+  session.Session Session=2;
+}
 
 // SessionManager creates sessions for users - each "login" is a new session.
 service SessionManager {
@@ -79,4 +83,6 @@ service SessionManager {
   rpc User2Session(User2SessionRequest)returns(SessionAliveResponse);
   // remove a user from a session (e.g. logout)
   rpc DisassociateUserFromSession(SessionToken) returns (SessionAliveResponse);
+  // whoami
+  rpc WhoAmI(common.Void)returns(WhoAmIResponse);
 }
