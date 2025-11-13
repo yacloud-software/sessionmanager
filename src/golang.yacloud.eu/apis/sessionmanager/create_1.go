@@ -4,7 +4,8 @@
 */
 
 /* geninfo:
-   filename  : protos/golang.yacloud.eu/apis/sessionmanager/sessionmanager.proto
+   rendererv : 2
+   filename  : golang.yacloud.eu/apis/sessionmanager/sessionmanager.proto
    gopackage : golang.yacloud.eu/apis/sessionmanager
    importname: ai_0
    clientfunc: GetSessionManager
@@ -51,8 +52,3 @@ func init() {
    client.RegisterDependency("sessionmanager.SessionManager")
    AddService("sessionmanager.SessionManager")
 }
-
-
-
-
-
