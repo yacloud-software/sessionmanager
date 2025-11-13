@@ -4,11 +4,11 @@ go 1.24.0
 
 require (
 	github.com/golang/protobuf v1.5.4
-	golang.conradwood.net/apis/auth v1.1.4196
-	golang.conradwood.net/apis/common v1.1.4196
+	golang.conradwood.net/apis/auth v1.1.4197
+	golang.conradwood.net/apis/common v1.1.4197
 	golang.conradwood.net/go-easyops v0.1.36399
 	golang.org/x/net v0.46.0
-	golang.yacloud.eu/apis/session v1.1.4196
+	golang.yacloud.eu/apis/session v1.1.4197
 	google.golang.org/grpc v1.76.0
 )
 
